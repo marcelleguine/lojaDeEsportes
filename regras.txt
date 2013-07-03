@@ -1,0 +1,57 @@
+•	Tela de Login
+
+O usuário digita login e senha nos respectivos campos. Se o login for válido, o usuário é redirecionado para a Home do site. Caso contrário, aparece uma mensagem na tela informando que houve erro.
+
+
+
+•	Tela de Venda
+
+O usuário informa o nome do produto e a quantidade de unidades vendidas e escolhe se deseja registrar outros produtos na venda, ou finalizar a venda. Caso ele opte por finalizá-la, o sistema deve emitir uma mensagem de erro se não for possível efetuar a venda por algum motivo (e.g. quantidade insuficiente no estoque). O usuário pode ainda optar por cancelar a venda. Durante o processo, o sistema exibe o valor total que está sendo recebido na compra.
+
+
+
+•	Tela de Cadastro de Produto
+
+O usuário digita nome e preço por unidade no formulário da tela, e vê uma mensagem de cadastro finalizado caso tenha sido efetuado com sucesso, ou uma mensagem de erro caso o nome informado já exista no sistema.
+
+
+
+•	Tela de Edição de Produto
+
+O sistema exibe o mesmo formulário da tela anterior, com as mesmas regras de negócio.
+
+
+
+•	Tela de Visualização de Produtos
+
+Esta tela contém uma tabela com a relação de todos os produtos registrados no sistema e seus respectivos preços e botões para edição e deleção.
+
+
+
+•	Tela de Compra de Produto
+
+O usuário informa o nome do produto, seu valor e a quantidade a ser comprada. O usuário pode optar por comprar outros produtos, finalizar a compra, ou cancela-la.
+
+
+
+•	Tela de Cadastro de Funcionários
+
+O usuário digita no formulário as seguintes informações do novo funcionário para cadastrá-lo: nome, salário, e-mail, CPF e data de nascimento. O sistema deve avisar e impedir a conclusão do processo em caso de erro, emitindo as mensagens correspondentes (“campo em branco”, “salário deve conter apenas números”, “e-mail em formato inválido” etc)
+
+
+
+•	Tela de Edição de Funcionários
+
+O sistema exibe o mesmo formulário da tela anterior, com as mesmas regras de negócio.
+
+
+
+•	Tela de Visualização de um Funcionário específico
+
+O sistema exibe as informações que são registradas nas telas anteriores, sem qualquer possibilidade de edição.
+
+
+
+•	Tela de Visualização de todos os Funcionários
+
+Esta página contém uma tabela que exibe nome e e-mail de todos os funcionários registrados no sistema. Para cada um, haverá botões de edição, visualização e deleção.
