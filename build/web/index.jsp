@@ -8,7 +8,7 @@
           <input class="input-xlarge" type="text" id="nome" placeholder="nome do produto"> <!-- fazer autocomplete -->
           <input class="input-small" type="text" id="price" placeholder="preço unitário"> <!-- criar máscara R$ 00,00 -->
           <select class="input-small">
-            <option>1</option>
+            <option>1</option>"
             <option>2</option>
             <option>3</option>
           </select>

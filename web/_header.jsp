@@ -33,7 +33,7 @@
                 <a href="#" id="products" role="button" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="products">
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/product/buy.jsp">Comprar</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/product/new.jsp">Cadratrar</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/product/new.jsp">Cadastrar</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/product/index.jsp">Visualizar</a></li>
                 </ul>
               </li>
