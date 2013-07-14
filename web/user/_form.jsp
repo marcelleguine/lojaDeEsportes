@@ -2,16 +2,16 @@
   <div id="usuario-box-nome" class="control-group">
     <label class="control-label" for="name">Nome</label>
     <div class="controls">
-      <input type="text" id="nome-usuario" placeholder="Nome" required>
-      <span display="none" class="help-inline"></span>
+      <input type="text" id="nome-usuario" placeholder="Nome">
+      <span style="display:none" class="help-inline">Nome precisa ter ao menos 3 caracteres</span>
     </div>
   </div>
 
   <div id="usuario-box-cpf" class="control-group">
     <label class="control-label" for="cpf">CPF</label>
     <div class="controls">
-      <input type="number" id="cpf" placeholder="___ . ___ . ___ - __" required> <!-- criar máscara -->
-      <span display="none" class="help-inline"></span>
+      <input type="number" id="cpf" placeholder="___ . ___ . ___ - __"> <!-- criar máscara -->
+      <span style="display:none" class="help-inline">CPF inválido</span>
     </div>
   </div>
   
@@ -19,23 +19,23 @@
     <label class="control-label" for="data-nascimento">Data de nascimento</label>
     <div class="controls">
       <input type="date" id="data-nascimento" placeholder="__/__/__"> <!-- criar máscara -->
-      <span display="none" class="help-inline"></span>
+      <span style="display:none" class="help-inline">Data inválida</span>
     </div>
   </div>
   
   <div id="usuario-box-email" class="control-group">
     <label class="control-label" for="email">E-mail</label>
     <div class="controls">
-      <input type="email" id="email" placeholder="email@email.com"> <!-- criar máscara -->
-      <span display="none" class="help-inline"></span>
+      <input type="text" id="email" placeholder="email@email.com"> <!-- criar máscara -->
+      <span style="display:none" class="help-inline">E-mail inválido</span>
     </div>
   </div>
 
   <div id="usuario-box-salario" class="control-group">
     <label class="control-label" for="salary">Salário</label>
     <div class="controls">
-      <input type="text" id="salario" placeholder="R$" required> <!-- criar máscara -->
-      <span display="none" class="help-inline"></span>
+      <input type="text" id="salario" placeholder="R$"> <!-- criar máscara -->
+      <span style="display:none" class="help-inline">Salário inválido</span>
     </div>
   </div>
   
