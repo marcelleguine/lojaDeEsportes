@@ -8,6 +8,13 @@
         );
     });
     
+    $('#form-compra').on('submit', function() {
+        return !!(
+            validarNome() *
+            validarQtd()
+        );
+    });
+    
     function validarNome() {
         if ($('#nome-produto').val().length < 2) {
             $('#produto-box-nome .help-inline').show();
