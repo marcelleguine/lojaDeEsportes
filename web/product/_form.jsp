@@ -1,6 +1,6 @@
 <form id="form-produto" class="form-horizontal">
   <div id="produto-box-nome" class="control-group">
-    <label class="control-label" for="name">Nome</label>
+    <label class="control-label" for="name">Nome*</label>
     <div class="controls">
       <input type="text" id="nome-produto" placeholder="Nome">
       <span style="display:none" class="help-inline">Nome precisa ter ao menos 2 caracteres</span>
@@ -8,18 +8,18 @@
   </div>
 
   <div id="produto-box-preco" class="control-group">
-    <label class="control-label" for="preco">Preço</label>
+    <label class="control-label" for="preco">Preço*</label>
     <div class="controls">
       <input type="text" id="preco" placeholder="Preço">
-      <span style="display:none" class="help-inline">Preço inválido</span>
+      <span style="display:none" class="help-inline">Campo obrigatório</span>
     </div>
   </div>
   
   <div id="produto-box-qtd" class="control-group">
-    <label class="control-label" for="quantidade">Quantidade</label>
+    <label class="control-label" for="quantidade">Quantidade*</label>
     <div class="controls">
       <input type="text" id="quantidade" placeholder="Quantidade">
-      <span style="display:none" class="help-inline">Quantidade inválida</span>
+      <span style="display:none" class="help-inline">Campo obrigatório</span>
     </div>
   </div>
 
