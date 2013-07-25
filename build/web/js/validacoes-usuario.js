@@ -3,7 +3,7 @@
     $('#form-usuario').on('submit', function() {
         return !!(
             validarNome() *
-            validarCpf() *
+//            validarCpf() *
             validarData() *
             validarEmail() *
             validarSalario()

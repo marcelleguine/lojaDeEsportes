@@ -1,4 +1,4 @@
-<form id="form-produto" class="form-horizontal">
+<form id="form-produto" class="form-horizontal" action="/lojaDeEsportes/src/controller/ProductServlet">
   <div id="produto-box-nome" class="control-group">
     <label class="control-label" for="name">Nome*</label>
     <div class="controls">
