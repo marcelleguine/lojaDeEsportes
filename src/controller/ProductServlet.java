@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author marcelleguine
  */
-@WebServlet(urlPatterns = {"/userServlet"})
-public class userServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/ProductServlet"})
+public class ProductServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -33,11 +33,9 @@ public class userServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String nome = request.getParameter("nome");
-            if (nome.equals(""))
-                response.sendRedirect("/lojaDeEsportes/user/new.jsp");
-            else
-                response.sendRedirect("/lojaDeEsportes/index.jsp");
+            /* TODO output your page here. You may use following sample code. */
+            //ProductDAO p = new ProductDAO();
+            response.sendRedirect("index.jsp");
         } finally {            
             out.close();
         }
@@ -83,5 +81,4 @@ public class userServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
 }

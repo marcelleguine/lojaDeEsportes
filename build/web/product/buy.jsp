@@ -6,7 +6,7 @@
     <div class="row">
         <div class="span4">
             <div id="produto-box-nome" class="control-group">
-                <label class="control-label" for="nome-produto">Nome</label>
+                <label class="control-label" for="nome-produto">Nome*</label>
                 <div class="controls">
                     <input type="text" id="nome-produto" placeholder="Nome">
                     <span style="display:none" class="help-inline">Nome precisa ter ao menos 2 caracteres</span>
@@ -16,10 +16,10 @@
 
         <div class="span3">
             <div id="produto-box-qtd" class="control-group">
-                <label class="control-label" for="quantidade">Quantidade</label>
+                <label class="control-label" for="quantidade">Quantidade*</label>
                 <div class="controls">
                     <input type="text" id="quantidade" placeholder="Quantidade">
-                    <span style="display:none" class="help-inline">Quantidade inválida</span>
+                    <span style="display:none" class="help-inline">Campo obrigatório</span>
                 </div>
             </div>
         </div>

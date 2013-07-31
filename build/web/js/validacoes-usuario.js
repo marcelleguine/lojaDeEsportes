@@ -3,7 +3,7 @@
     $('#form-usuario').on('submit', function() {
         return !!(
             validarNome() *
-            validarCpf() *
+//            validarCpf() *
             validarData() *
             validarEmail() *
             validarSalario()
@@ -12,10 +12,12 @@
     
     function validarNome() {
         if ($('#nome-usuario').val().length < 3) {
+            $('#usuario-box-nome').addClass("error");
             $('#usuario-box-nome .help-inline').show();
             return false;
         }
         else {
+            $('#usuario-box-nome').removeClass("error");
             $('#usuario-box-nome .help-inline').hide();
             return true;
         }
@@ -59,19 +61,38 @@
         if (rev != parseInt(cpf.charAt(10)))
             valido = false;
         
-        if (!valido)
+        if (!valido){
+            $('#usuario-box-cpf').addClass("error");
             $('#usuario-box-cpf .help-inline').show();
-        else
+        }
+            
+        else{
+            $('#usuario-box-cpf').removeClass("error");
             $('#usuario-box-cpf .help-inline').hide();
+        }
+            
 
         return valido;
+    }
+    
+    function validarSalario() {
+        if (!$.isNumeric($('#salario').val())) {
+            $('#usuario-box-salario').addClass("error");
+            $('#usuario-box-salario .help-inline').show();
+            return false;
+        }
+        else {
+            $('#usuario-box-salario').removeClass("error");
+            $('#usuario-box-salario .help-inline').hide();
+            return true;
+        }
     }
     
     function validarData() {
         var valido = true;
         var data = $('#data-nascimento').val();
         if(data == '')
-            valido = false;
+            return valido = true;
 
         var padraoData = /^\d{4}-((0\d)|(1[012]))-(([012]\d)|3[01])$/; 
         var dtArray = data.match(padraoData); // is format OK?
@@ -79,7 +100,6 @@
         if (dtArray == null)
            valido = false;
         else {
-            
             var dtDia = dtArray[5];
             var dtMes = dtArray[3];
             var dtAno = dtArray[1];
@@ -97,10 +117,16 @@
             }
         }
         
-        if (!valido)
+        if (!valido){
+            $('#usuario-box-data').addClass("error");
             $('#usuario-box-data .help-inline').show();
-        else
+        }
+            
+        else{
+            $('#usuario-box-data').removeClass("error");
             $('#usuario-box-data .help-inline').hide();
+        }
+            
         
         return valido;
       }
@@ -109,23 +135,14 @@
           var email = $('#email').val();
           var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
           
-          if (email == '' || !emailReg.test(email)) {
+          if (!emailReg.test(email)) {
+              $('#usuario-box-email').addClass("error");
               $('#usuario-box-email .help-inline').show();
               return false;
           }
           else {
+              $('#usuario-box-email').removeClass("error");
               $('#usuario-box-email .help-inline').hide();
-              return true;
-          }
-      }
-      
-      function validarSalario() {
-          if (!$.isNumeric($('#salario').val())) {
-              $('#usuario-box-salario .help-inline').show();
-              return false;
-          }
-          else {
-              $('#usuario-box-salario .help-inline').hide();
               return true;
           }
       }

@@ -16,6 +16,13 @@
       <span class="value">CPF do funcionario</span>
     </div>
   </div>
+    
+   <div class="control-group">
+    <label class="control-label">Salário</label>
+    <div class="controls">
+      <span class="value">Salário do funcionario</span>
+    </div>
+  </div>
   
   <div class="control-group">
     <label class="control-label">Data de nascimento</label>
@@ -28,13 +35,6 @@
     <label class="control-label">E-mail</label>
     <div class="controls">
       <span class="value">E-mail do funcionario</span>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <label class="control-label">Salário</label>
-    <div class="controls">
-      <span class="value">Salário do funcionario</span>
     </div>
   </div>
 
