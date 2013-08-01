@@ -13,14 +13,20 @@ import java.util.Date;
  */
 public class UserBean {
     
+    private int id;
     private String name;
     private String cpf;
     private double salary;
     private Date date;
     private String email;
     
-    public UserBean(){
-        
+    public UserBean(int i, String n, String c, double s, Date d, String e){
+        id = i;
+        name = n;
+        cpf = c;
+        salary = s;
+        date = d;
+        email = e;
     }
     
     public String getName() {
@@ -61,5 +67,19 @@ public class UserBean {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 }

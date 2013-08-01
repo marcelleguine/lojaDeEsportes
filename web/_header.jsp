@@ -34,14 +34,14 @@
                 <ul class="dropdown-menu" role="menu" aria-labelledby="products">
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/product/buy.jsp">Comprar</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/product/new.jsp">Cadastrar</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/product/index.jsp">Visualizar</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/ViewProductsServlet">Visualizar</a></li>
                 </ul>
               </li>
               <li class="dropdown">
                 <a href="#" id="users" role="button" class="dropdown-toggle" data-toggle="dropdown">Funcionários<b class="caret"></b></a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="users">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/user/new.jsp">Cadratrar</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/user/index.jsp">Visualizar</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/user/new.jsp">Cadrastrar</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/ViewUsersServlet">Visualizar</a></li>
                 </ul>
               </li>
               <li><a href="/lojaDeEsportes/report.jsp" id="report" role="button">Relatórios</a></li>

@@ -12,12 +12,16 @@ package model;
 
 public class ProductBean {
     
+    private int id;
     private String name;
     private double price;
     private int qnt;
     
-    public ProductBean(){
-        
+    public ProductBean(int i, String n, double p, int q){
+        id = i;
+        name = n;
+        price = p;
+        qnt = q;
     }
     
     public String getName() {
@@ -42,5 +46,19 @@ public class ProductBean {
 
     public void setQnt(int qnt) {
         this.qnt = qnt;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 }

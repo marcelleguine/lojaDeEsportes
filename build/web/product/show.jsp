@@ -28,7 +28,7 @@
   
   <div class="control-group">
     <div class="controls">
-    	<a class="btn btn-inverse" href="#">Voltar</a>
+    	<a class="btn btn-inverse" href="index.jsp">Voltar</a>
     	<a class="btn btn-success" href="edit.jsp">Editar</a>
     </div>
   </div>

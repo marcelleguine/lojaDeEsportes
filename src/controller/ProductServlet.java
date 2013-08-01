@@ -1,10 +1,17 @@
+package controller;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 
+import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,8 +41,21 @@ public class ProductServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-            //ProductDAO p = new ProductDAO();
-            response.sendRedirect("index.jsp");
+            ProductDAO p = new ProductDAO();
+            
+            String name = request.getParameter("nome-produto");
+            double price = Double.parseDouble(request.getParameter("preco"));
+            int qnt = Integer.parseInt(request.getParameter("quantidade"));
+            
+            if(p.insertIntoProducts(name, price, qnt)) {
+                response.sendRedirect("index.jsp");   
+            } else{
+                out.print("Não deu certo não, cara...");
+            }
+            
+            
+        } catch(Exception e) { 
+            out.println(e.toString());
         } finally {            
             out.close();
         }

@@ -1,8 +1,11 @@
+package controller;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,15 +37,21 @@ public class UserServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UserServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UserServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            UserDAO u = new UserDAO();
+            
+            String name = request.getParameter("nome-usuario");
+            String cpf = request.getParameter("cpf");
+            double salary = Double.parseDouble(request.getParameter("salario"));
+            String dataNascimento = request.getParameter("data-nascimento");
+            String email = request.getParameter("email");
+            
+            if(u.insertIntoUser(name, cpf, salary, dataNascimento, email)) {
+                response.sendRedirect("user/index.jsp");   
+            } else{
+                out.print("Não deu certo não, cara...");
+            }
+        } catch(Exception e) {
+            out.print(e.toString());
         } finally {            
             out.close();
         }
