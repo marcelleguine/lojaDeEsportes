@@ -39,16 +39,29 @@ public class UserServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             UserDAO u = new UserDAO();
             
+            int user_id = Integer.parseInt(request.getParameter("user_id"));
+            
+            String login = request.getParameter("login-usuario");
+            String password = request.getParameter("password-usuario");
             String name = request.getParameter("nome-usuario");
             String cpf = request.getParameter("cpf");
             double salary = Double.parseDouble(request.getParameter("salario"));
             String dataNascimento = request.getParameter("data-nascimento");
             String email = request.getParameter("email");
             
-            if(u.insertIntoUser(name, cpf, salary, dataNascimento, email)) {
-                response.sendRedirect("user/index.jsp");   
-            } else{
-                out.print("Não deu certo não, cara...");
+            //Verifica se é produto novo (id == 0) ou não:
+            if(user_id == 0) {
+                if(u.insertIntoUser(login, password, name, cpf, salary, dataNascimento, email)) {
+                    response.sendRedirect("ViewUsersServlet");   
+                } else{
+                    out.print("Houve um erro inesperado ao incluir este funcionário.");
+                }
+            } else {
+                if(u.editUser(user_id,login, password ,name, cpf, salary, dataNascimento, email)) {
+                    response.sendRedirect("/lojaDeEsportes/ViewUsersServlet");
+                } else{
+                    out.print("Houve um erro inesperado ao editar este funcionário.");
+                }
             }
         } catch(Exception e) {
             out.print(e.toString());

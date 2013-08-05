@@ -40,7 +40,7 @@
               <li class="dropdown">
                 <a href="#" id="users" role="button" class="dropdown-toggle" data-toggle="dropdown">Funcionários<b class="caret"></b></a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="users">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/user/new.jsp">Cadrastrar</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/user/new.jsp">Cadastrar</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/ViewUsersServlet">Visualizar</a></li>
                 </ul>
               </li>

@@ -36,6 +36,14 @@
         <servlet-name>CreateProductServlet</servlet-name>
         <servlet-class>controller.CreateProductServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowUserServlet</servlet-name>
+        <servlet-class>controller.ShowUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditUserServlet</servlet-name>
+        <servlet-class>controller.EditUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Teste</servlet-name>
         <url-pattern>/Teste</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>CreateProductServlet</servlet-name>
         <url-pattern>/CreateProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowUserServlet</servlet-name>
+        <url-pattern>/ShowUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUserServlet</servlet-name>
+        <url-pattern>/EditUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

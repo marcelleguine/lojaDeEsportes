@@ -4,8 +4,10 @@
  */
 package controller;
 
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Pedro
  */
-public class CreateProductServlet extends HttpServlet {
+public class EditUserServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -33,15 +35,19 @@ public class CreateProductServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CreateProductServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CreateProductServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            UserDAO u = new UserDAO();
+            
+            int userId = Integer.parseInt(request.getParameter("user_id"));
+            
+            request.setAttribute("user", u.selectUser(userId));
+            
+            String address = "user/edit.jsp";
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+           
+            dispatcher.forward(request, response); 
+        } catch(Exception e) {
+            e.printStackTrace();
         } finally {            
             out.close();
         }

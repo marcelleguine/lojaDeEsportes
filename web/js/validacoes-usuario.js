@@ -6,7 +6,10 @@
             validarCpf() *
             validarData() *
             validarEmail() *
-            validarSalario()
+            validarSalario() *
+            validarLogin() *
+            validarSenha() *
+            vaildarConfirmacaoSenha()
         );
     });
     
@@ -147,6 +150,46 @@
           else {
               $('#usuario-box-email').removeClass("error");
               $('#usuario-box-email .help-inline').hide();
+              return true;
+          }
+      }
+      
+      function validarLogin() {
+        if ($('#login-usuario').val().length < 3) {
+          $('#usuario-box-login').addClass("error");
+          $('#usuario-box-login .help-inline').show();
+          return false;
+        }
+        else {
+            $('#usuario-box-login').removeClass("error");
+            $('#usuario-box-login .help-inline').hide();
+            return true;
+        }
+      }
+      
+      function validarSenha() {
+          if ($('#password-usuario').val().length < 3) {
+            $('#usuario-box-password').addClass("error");
+            $('#usuario-box-password .help-inline').show();
+            return false;
+          }
+          else {
+              $('#usuario-box-password').removeClass("error");
+              $('#usuario-box-password .help-inline').hide();
+              return true;
+          }
+      }
+      
+      function vaildarConfirmacaoSenha() {
+          var senha = $('#password-usuario').val();
+          var confirm_senha = $('#password-confirm').val();
+          if(senha !== confirm_senha) {
+              $('#usuario-box-password-confirm').addClass("error");
+              $('#usuario-box-password-confirm .help-inline').show();
+              return false;
+          } else {
+              $('#usuario-box-password-confirm').removeClass("error");
+              $('#usuario-box-password-confirm .help-inline').hide();
               return true;
           }
       }

@@ -14,6 +14,8 @@ import java.util.Date;
 public class UserBean {
     
     private int id;
+    private String login;
+    private String password;
     private String name;
     private String cpf;
     private double salary;
@@ -22,6 +24,17 @@ public class UserBean {
     
     public UserBean(int i, String n, String c, double s, Date d, String e){
         id = i;
+        name = n;
+        cpf = c;
+        salary = s;
+        date = d;
+        email = e;
+    }
+    
+    public UserBean(int i, String l, String p, String n, String c, double s, Date d, String e){
+        id = i;
+        login = l;
+        password = p;
         name = n;
         cpf = c;
         salary = s;
@@ -81,5 +94,33 @@ public class UserBean {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @return the login
+     */
+    public String getLogin() {
+        return login;
+    }
+
+    /**
+     * @param login the login to set
+     */
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

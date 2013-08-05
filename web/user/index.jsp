@@ -24,8 +24,8 @@
               <td><c:out value="${user.date}"/></td>
               <td><c:out value="${user.email}"/></td>
               <td>
-                <a class="btn btn-info" href="user/show.jsp"><i class="icon-eye-open icon-white"></i></a>
-                <a class="btn btn-warning" href="user/edit.jsp"><i class="icon-pencil icon-white"></i></a>
+                <a class="btn btn-info" href="ShowUserServlet?user_id=<c:out value="${user.id}"/>"><i class="icon-eye-open icon-white"></i></a>
+                <a class="btn btn-warning" href="EditUserServlet?user_id=<c:out value="${user.id}"/>"><i class="icon-pencil icon-white"></i></a>
                 <a class="btn btn-danger" href="DeleteUserServlet?user_id=<c:out value="${user.id}"/>"><i class="icon-trash icon-white"></i></a>
               </td>
             </tr>

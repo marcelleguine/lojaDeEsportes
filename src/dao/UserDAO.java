@@ -37,7 +37,7 @@ public class UserDAO {
         return conexao;
     }
     
-    public boolean insertIntoUser(String name, String cpf, double salary, String birthDate, String email) throws Exception {
+    public boolean insertIntoUser(String login, String password, String name, String cpf, double salary, String birthDate, String email) throws Exception {
         Statement sql = conexao.createStatement();
         if(!birthDate.isEmpty()) {
             //Fazer tratamento de data: botar no formato yyyy-mm-dd, por causa do banco.
@@ -45,8 +45,8 @@ public class UserDAO {
         } else {
             birthDate = "NULL";
         }
-        int resp = sql.executeUpdate("insert into users (name, cpf, salary, birth_date, email) values"
-                + " ('" + name + "','" + cpf + "'," + salary + "," + birthDate + ",'" + email + "')");
+        int resp = sql.executeUpdate("insert into users (login, password, name, cpf, salary, birth_date, email) values"
+                + " ('" + login + "','" + password + "','" + name + "','" + cpf + "'," + salary + "," + birthDate + ",'" + email + "')");
         if(resp == 0) {
             return false;
         }
@@ -78,6 +78,39 @@ public class UserDAO {
     public boolean deleteUser(int id) throws Exception {
         Statement sql = conexao.createStatement();
         int resp = sql.executeUpdate("delete from users where id = " + id);
+        if(resp == 0) {
+            return false;
+        }
+        return true;
+    }
+    
+    public UserBean selectUser(int id) throws Exception {
+        Statement sql = conexao.createStatement();
+        ResultSet result = sql.executeQuery("select * from users where id = " + id);
+        
+        result.first();
+        int user_id = result.getInt("id");
+        String login = result.getString("login");
+        String password = result.getString("password");
+        String name = result.getString("name");
+        String cpf = result.getString("cpf");
+        double salary = result.getDouble("salary");
+        Date birthDate = result.getDate("birth_date");
+        String email = result.getString("email");
+        
+        return new UserBean(user_id, login, password, name, cpf, salary, birthDate, email);
+    }
+    
+    public boolean editUser(int id, String newLogin, String newPassword, String newName, String newCpf, double newSalary, String newBirthDate, String newEmail) throws Exception {
+        Statement sql = conexao.createStatement();
+        if(!newBirthDate.isEmpty()) {
+            //Fazer tratamento de data: botar no formato yyyy-mm-dd, por causa do banco.
+            newBirthDate = "'" + newBirthDate + "'";
+        } else {
+            newBirthDate = "NULL";
+        }
+        int resp = sql.executeUpdate("update users set login='" + newLogin + "', password=" + newPassword + ", name='" + newName+ 
+                "', cpf='" + newCpf +"', salary=" + newSalary + ", birth_date=" + newBirthDate + ", email='" + newEmail + "' where id=" + id);
         if(resp == 0) {
             return false;
         }
