@@ -90,4 +90,26 @@ public class ProductDAO {
         return true;
     }
     
+    public ProductBean selectProduct(int id) throws Exception {
+        Statement sql = conexao.createStatement();
+        ResultSet result = sql.executeQuery("select * from products where id = " + id);
+        
+        result.first();
+        int p_id = result.getInt("id");
+        String name = result.getString("name");
+        double price = result.getDouble("price");
+        int qnt = result.getInt("qnt");
+        
+        return new ProductBean(p_id, name, price, qnt);
+    }
+    
+    public boolean editProduct(int id, String newName, double newPrice, int newQnt) throws Exception {
+        Statement sql = conexao.createStatement();
+        int resp = sql.executeUpdate("update products set name='" + newName + "', price=" + newPrice + ", qnt=" + newQnt+ " where id=" + id);
+        if(resp == 0) {
+            return false;
+        }
+        return true;
+    }
+    
 }

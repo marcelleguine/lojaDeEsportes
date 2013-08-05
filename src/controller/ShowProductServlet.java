@@ -1,29 +1,24 @@
-package controller;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+package controller;
 
 import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.ProductBean;
 
 /**
  *
- * @author marcelleguine
+ * @author Pedro
  */
-@WebServlet(urlPatterns = {"/ProductServlet"})
-public class ProductServlet extends HttpServlet {
+public class ShowProductServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -40,35 +35,20 @@ public class ProductServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
             ProductDAO p = new ProductDAO();
             
-            int product_id = Integer.parseInt(request.getParameter("product_id"));
+            int productId = Integer.parseInt(request.getParameter("product_id"));
             
-            String name = request.getParameter("nome-produto");
-            double price = Double.parseDouble(request.getParameter("preco"));
-            int qnt = Integer.parseInt(request.getParameter("quantidade"));
+            request.setAttribute("product", p.selectProduct(productId));
             
-            //Verifica se é produto novo (id == 0) ou não:
-            if(product_id == 0) {
-                if(p.insertIntoProducts(name, price, qnt)) {
-                    response.sendRedirect("/lojaDeEsportes/ViewProductsServlet");   
-                } else{
-                    out.print("Houve um erro inesperado ao incluir este produto.");
-                }
-            } else {
-                if(p.editProduct(product_id,name, price, qnt)) {
-                    response.sendRedirect("/lojaDeEsportes/ViewProductsServlet");
-                } else{
-                    out.print("Houve um erro inesperado ao editar este produto.");
-                }
-            }
+            String address = "product/show.jsp";
             
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+           
+            dispatcher.forward(request, response); 
             
-            
-            
-        } catch(Exception e) { 
-            out.println(e.toString());
+        }catch(Exception e) {
+            e.printStackTrace();
         } finally {            
             out.close();
         }

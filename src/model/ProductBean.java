@@ -24,6 +24,10 @@ public class ProductBean {
         qnt = q;
     }
     
+    public ProductBean(int i){
+        id = i;
+    }
+    
     public String getName() {
         return name;
     }
