@@ -14,9 +14,10 @@
 
   <body id="login">
     <div class="container">
-      <form class="form-signin" action="index.jsp">
-        <input type="text" class="input-block-level" placeholder="email" required>
-        <input type="password" class="input-block-level" placeholder="senha" required>
+      <form class="form-signin" action="LoginServlet">
+        <h2>Loja de Esportes</h2>
+        <input name="login" type="text" class="input-block-level" placeholder="email" required>
+        <input name="password" type="password" class="input-block-level" placeholder="senha" required>
         <label class="checkbox">
           <input type="checkbox" value="remember-me">Lembrar usuário
         </label>
