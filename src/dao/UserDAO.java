@@ -101,6 +101,25 @@ public class UserDAO {
         return new UserBean(user_id, login, password, name, cpf, salary, birthDate, email);
     }
     
+    public UserBean selectUser(String login) throws Exception {
+        Statement sql = conexao.createStatement();
+        ResultSet result = sql.executeQuery("select * from users where login = '" + login +"'");
+        
+        if(result.first()) {
+            int user_id = result.getInt("id");
+            String user_login = result.getString("login");
+            String password = result.getString("password");
+            String name = result.getString("name");
+            String cpf = result.getString("cpf");
+            double salary = result.getDouble("salary");
+            Date birthDate = result.getDate("birth_date");
+            String email = result.getString("email");
+
+            return new UserBean(user_id, user_login, password, name, cpf, salary, birthDate, email);
+        } 
+        return null;
+    }
+    
     public boolean editUser(int id, String newLogin, String newPassword, String newName, String newCpf, double newSalary, String newBirthDate, String newEmail) throws Exception {
         Statement sql = conexao.createStatement();
         if(!newBirthDate.isEmpty()) {
@@ -115,6 +134,15 @@ public class UserDAO {
             return false;
         }
         return true;
+    }
+    
+    public boolean userLogin(UserBean user, String login, String password) {
+        String user_login = user.getLogin();
+        String user_password = user.getPassword();
+        if(login.equals(user_login) && user_password.equals(password)) {
+            return true;
+        }
+        return false;
     }
     
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -24,8 +25,16 @@
           </button>
           <a class="brand" href="/lojaDeEsportes/index.jsp">Loja de Esportes</a>
           <div class="nav-collapse collapse">
+              <!-- Instanciando um Bean para poder escrever o nome do usuário logado. -->
+              <c:if test="${!empty sessionScope['logged_user']}">
+                  <jsp:useBean id="logged_user"
+                    type="model.UserBean"
+                    scope="session" /> 
+              </c:if>
             <p class="navbar-text pull-right">
-              <a href="#" class="navbar-link">marcelleguine</a>
+                <a href="#" class="navbar-link"><c:if test="${!empty sessionScope['logged_user']}"><jsp:getProperty name="logged_user" 
+                                                                                    property="login" /></c:if></a>
+              <a href="LogoutServlet" class="navbar-link">sair</a>
             </p>
             <ul class="nav">
               <li class="active"><a href="/lojaDeEsportes/index.jsp">Venda</a></li>
@@ -33,7 +42,7 @@
                 <a href="#" id="products" role="button" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="products">
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/product/buy.jsp">Comprar</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/CreateProductServlet">Cadastrar</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/product/new.jsp">Cadastrar</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/ViewProductsServlet">Visualizar</a></li>
                 </ul>
               </li>
