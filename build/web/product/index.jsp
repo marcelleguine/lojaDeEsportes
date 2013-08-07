@@ -4,7 +4,7 @@
 <h1>Visualizar produtos</h1>
 <div id="table-sell" class="row-fluid">   
     <div class="span12">
-                       
+    <c:if test="${!empty requestScope['products']}">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -29,6 +29,10 @@
         </c:forEach>
       </tbody>
     </table>
+    </c:if>
+    <c:if test="${empty requestScope['products']}">
+         Não há nenhum produto cadastrado. Cadastre produtos para visualizá-los.
+    </c:if>
   </div><!--end span-->
 </div><!--end row-->
 

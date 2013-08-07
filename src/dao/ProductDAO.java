@@ -32,53 +32,55 @@ public class ProductDAO {
         }
     }
     
-    public Connection getConexao() {
-        return conexao;
-    }
+//    public Connection getConexao() {
+//        return conexao;
+//    }
     
-    public boolean insertIntoProducts(String name, double price, int qnt) throws Exception {
+    public boolean insertIntoProducts(String name, double price) throws Exception {
         Statement sql = conexao.createStatement();
-        int resp = sql.executeUpdate("insert into products (name, price, qnt) values ('" + name + "'," + price + "," + qnt + ")");
+        int resp = sql.executeUpdate("insert into products (name, price) values ('" + name + "'," + price + ")");
         if(resp == 0) {
             return false;
         }
         return true;
     }
     
-    public ProductBean selectFromProducts() throws Exception {
-        Statement sql = conexao.createStatement();
-        ResultSet resultado = sql.executeQuery("select * from products");
-        
-        resultado.first();
-        
-        int id = resultado.getInt("id");
-        String name = resultado.getString("name");
-        double price = resultado.getDouble("price");
-        int qnt = resultado.getInt("qnt");
-        
-        ProductBean bean = new ProductBean(id, name, price, qnt);
-        
-        return bean;
-    }
+//    public ProductBean selectFromProducts() throws Exception {
+//        Statement sql = conexao.createStatement();
+//        ResultSet resultado = sql.executeQuery("select * from products");
+//        
+//        resultado.first();
+//        
+//        int id = resultado.getInt("id");
+//        String name = resultado.getString("name");
+//        double price = resultado.getDouble("price");
+//        int qnt = resultado.getInt("qnt");
+//        
+//        ProductBean bean = new ProductBean(id, name, price, qnt);
+//        
+//        return bean;
+//    }
     
     public ArrayList<ProductBean> selectAllProducts() throws Exception {
         Statement sql = conexao.createStatement();
         ArrayList<ProductBean> products = new ArrayList<ProductBean>();
         ResultSet result = sql.executeQuery("select * from products");
         
-        result.first();
-        
-        do {
-            int id = result.getInt("id");
-            String name = result.getString("name");
-            double price = result.getDouble("price");
-            int qnt = result.getInt("qnt");
+        if(result.first()) {
+            do {
+                int id = result.getInt("id");
+                String name = result.getString("name");
+                double price = result.getDouble("price");
+                int qnt = result.getInt("qnt");
 
-            products.add(new ProductBean(id, name, price, qnt));
-            
-        } while(result.next());
-        
-        return products;
+                products.add(new ProductBean(id, name, price, qnt));
+
+            } while(result.next());
+
+            return products;
+        } else {
+            return null;
+        }
     }
     
     public boolean deleteProduct(int id) throws Exception {
@@ -103,13 +105,29 @@ public class ProductDAO {
         return new ProductBean(p_id, name, price, qnt);
     }
     
-    public boolean editProduct(int id, String newName, double newPrice, int newQnt) throws Exception {
+    public boolean editProduct(int id, String newName, double newPrice) throws Exception {
         Statement sql = conexao.createStatement();
-        int resp = sql.executeUpdate("update products set name='" + newName + "', price=" + newPrice + ", qnt=" + newQnt+ " where id=" + id);
+        int resp = sql.executeUpdate("update products set name='" + newName + "', price=" + newPrice + " where id=" + id);
         if(resp == 0) {
             return false;
         }
         return true;
+    }
+    
+    public boolean editProductQnt(int id, int newQnt) throws Exception {
+        Statement sql = conexao.createStatement();
+        int resp = sql.executeUpdate("update products set qnt=qnt+" + newQnt + " where id=" + id);
+        if(resp == 0) {
+            return false;
+        }
+        return true;
+    }
+    
+    public String getProductName(int id) throws Exception {
+        Statement sql = conexao.createStatement();
+        ResultSet prodName = sql.executeQuery("select name from products where id = " + id);
+        prodName.first();
+        return prodName.getString("name");
     }
     
 }

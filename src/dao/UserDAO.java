@@ -145,4 +145,11 @@ public class UserDAO {
         return false;
     }
     
+    public String getUserName(int id) throws Exception {
+        Statement sql = conexao.createStatement();
+        ResultSet uName = sql.executeQuery("select name from users where id = " + id);
+        uName.first();
+        return uName.getString("name");
+    }
+    
 }

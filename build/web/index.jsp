@@ -1,56 +1,56 @@
 <%@ include file="_header.jsp" %>
 
-<h1>Venda de produtos</h1>
+<h1>Vendas de produtos</h1>
 <div class="row-fluid">        
   <div class="span12">
-    <form class="form-inline">
+      <form class="form-inline" action="/lojaDeEsportes/SaleServlet">
       <fieldset id="form-sell">
-          <input class="input-xlarge" type="text" id="nome" placeholder="nome do produto"> <!-- fazer autocomplete -->
-          <input class="input-small" type="text" id="price" placeholder="preço unitário"> <!-- criar máscara R$ 00,00 -->
-          <select class="input-small">
+          <select class="input-xlarge" id="prod-name" name="prod-name">
+              <option value="-1">- Selecione um produto -</option>
+              <c:forEach var="productBean" items="${requestScope['products']}" >
+                <option value="<c:out value="${productBean.id}"/>"><c:out value="${productBean.name}"/></option>
+              </c:forEach>
+          </select>
+          <input class="input-small" type="text" id="price" name="price" placeholder="preço unitário"> <!-- criar máscara R$ 00,00 -->
+          <select class="input-small" name="quantidade">
             <option>1</option>"
             <option>2</option>
             <option>3</option>
           </select>
-          <button type="button" class="btn btn-inverse">Adicionar produto</button>
+          <button type="submit" class="btn btn-success">Realizar Venda</button>
       </fieldset>
     </form>
   </div><!--end span-->
 </div>
 <div id="table-sell" class="row-fluid">   
   <div class="span12">
+    <c:if test="${!empty requestScope['sales']}">
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Nome</th>
+          <th>Nome do Funcionário</th>
+          <th>Nome do Produto</th>
+          <th>Preço Unitário</th>
           <th>Quantidade</th>
-          <th>Preço unitário</th>
-          <th>Preço total</th>
+          <th>Preço Total</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Camisa Nike CBF Home s/nº 2013 - Masculina</td>
-          <td>R$199,90</td>
-          <td>2</td>
-          <td>R$399,80</td>
-        </tr>
-        <tr>
-          <td>Camisa Nike CBF Home 2013 - Feminina</td>
-          <td>R$179,00</td>
-          <td>1</td>
-          <td>R$179,00</td>
-        </tr>
-        <tr>
-          <td>Bermuda Oxer Medley - Masculino</td>
-          <td>R$59,90</td>
-          <td>3</td>
-          <td>R$179,70</td>
-        </tr>
+        <c:forEach var="saleBean" items="${requestScope['sales']}" >
+            <tr>
+              <td><c:out value="${saleBean.userName}"/></td>
+              <td><c:out value="${saleBean.productName}"/></td>
+              <td>R$ <c:out value="${saleBean.unitPrice}"/></td>
+              <td><c:out value="${saleBean.qnt}"/></td>
+              <td>R$ <c:out value="${saleBean.totalPrice}"/></td>
+            </tr>
+        </c:forEach>
       </tbody>
     </table>
-    <span id="total">Total: R$758,50</span>
-    <button id="btn-end-sell" type="button" class="btn btn-success">Finalizar venda</button>
+    </c:if>
+    <c:if test="${empty requestScope['sales']}">
+        Não há nenhum venda cadastrada. Cadastre vendas no formulário acima.
+    </c:if>
   </div><!--end span-->
 </div><!--end row--> 
 

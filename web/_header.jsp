@@ -26,25 +26,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/lojaDeEsportes/index.jsp">Loja de Esportes</a>
+          <a class="brand" href="/lojaDeEsportes/ViewSalesServlet">Loja de Esportes</a>
           <div class="nav-collapse collapse">
               <!-- Instanciando um Bean para poder escrever o nome do usuário logado. -->
-              <c:if test="${!empty sessionScope['logged_user']}">
-                  <jsp:useBean id="logged_user"
-                    type="model.UserBean"
-                    scope="session" /> 
-              </c:if>
+                <jsp:useBean id="logged_user" type="model.UserBean" scope="session" /> 
             <p class="navbar-text pull-right">
-                <a href="#" class="navbar-link"><c:if test="${!empty sessionScope['logged_user']}"><jsp:getProperty name="logged_user" 
-                                                                                    property="login" /></c:if></a>
-              <a href="LogoutServlet" class="navbar-link">sair</a>
+                <a href="#" class="navbar-link"><jsp:getProperty name="logged_user" property="login" /></a>
+              <a href="/lojaDeEsportes/LogoutServlet" class="navbar-link">sair</a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="/lojaDeEsportes/index.jsp">Venda</a></li>
+              <li class="ce"><a href="/lojaDeEsportes/ViewSalesServlet">Vendas</a></li>
+              <li><a href="/lojaDeEsportes/ViewPurchasesServlet" id="report" role="button">Compras</a></li>
               <li class="dropdown">
                 <a href="#" id="products" role="button" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="products">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/product/buy.jsp">Comprar</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/LoadPurchaseServlet">Comprar</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/product/new.jsp">Cadastrar</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/ViewProductsServlet">Visualizar</a></li>
                 </ul>
@@ -56,7 +52,6 @@
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="/lojaDeEsportes/ViewUsersServlet">Visualizar</a></li>
                 </ul>
               </li>
-              <li><a href="/lojaDeEsportes/report.jsp" id="report" role="button">Relatórios</a></li>
             </ul>
           </div><!--end nav-collapse -->
         </div>
@@ -64,10 +59,21 @@
     </div>
 
     <div class="container-fluid">
-    </c:if>
+        <c:if test="${!empty requestScope['userMessage']}">
+            <jsp:useBean id="userMessage"
+                        type="model.MessageBean"
+                        scope="request" />
+            <div class="row-fluid">
+                <span id="user_messages" class="<jsp:getProperty name="userMessage" property="success" />">
+                    <jsp:getProperty name="userMessage" property="message" />
+                </span>
+            </div>
+        </c:if>
+</c:if>
+
 <c:if test="${empty sessionScope['logged_user']}">
     <script type="text/javascript">
         window.location="/lojaDeEsportes/login.jsp";
-     </script>
+    </script>
 </c:if>
             

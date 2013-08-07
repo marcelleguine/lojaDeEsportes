@@ -18,9 +18,6 @@
         <h2>Loja de Esportes</h2>
         <input name="login" type="text" class="input-block-level" placeholder="email" required>
         <input name="password" type="password" class="input-block-level" placeholder="senha" required>
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me">Lembrar usuário
-        </label>
         <button class="btn btn-success" type="submit">Login</button>
       </form>
     </div> <!-- end container -->

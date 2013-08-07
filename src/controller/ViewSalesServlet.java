@@ -1,31 +1,24 @@
-package controller;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+package controller;
 
 import dao.ProductDAO;
+import dao.SaleDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.MessageBean;
 
 /**
  *
- * @author marcelleguine
+ * @author Pedro
  */
-@WebServlet(urlPatterns = {"/ProductServlet"})
-public class ProductServlet extends HttpServlet {
+public class ViewSalesServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -42,52 +35,20 @@ public class ProductServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
             ProductDAO p = new ProductDAO();
+            SaleDAO sal = new SaleDAO();
             
-            int product_id = Integer.parseInt(request.getParameter("product_id"));
+            request.setAttribute("products", p.selectAllProducts());
             
-            String name = request.getParameter("nome-produto");
-            double price = Double.parseDouble(request.getParameter("preco"));
+            request.setAttribute("sales", sal.selectAllSales());
             
-            //Verifica se é produto novo (id == 0) ou não:
-            if(product_id == 0) {
-                if(p.insertIntoProducts(name, price)) {
-                    request.setAttribute("userMessage", new MessageBean("sucesso", "O produto foi cadastrado com sucesso."));
-
-                    String address = "/ViewProductsServlet";
-
-                    RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-
-                    dispatcher.forward(request, response);
-                } else{
-                    out.print("Houve um erro inesperado ao incluir este produto.");
-                }
-            } else {
-                if(p.editProduct(product_id,name, price)) {
-                    request.setAttribute("userMessage", new MessageBean("sucesso", "O produto foi alterado com sucesso."));
-
-                    String address = "/ViewProductsServlet";
-
-                    RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-
-                    dispatcher.forward(request, response);
-                } else{
-                    out.print("Houve um erro inesperado ao editar este produto.");
-                }
-            }
-            
-            
-            
-            
-        } catch(Exception e) { 
-            request.setAttribute("userMessage", new MessageBean("erro", "Ocorreu um erro cadastrando este produto."));
-            
-            String address = "/ViewProductsServlet";
+            String address = "/index.jsp";
             
             RequestDispatcher dispatcher = request.getRequestDispatcher(address);
             
             dispatcher.forward(request, response);
+        } catch(Exception e) { 
+            e.printStackTrace();
         } finally {            
             out.close();
         }

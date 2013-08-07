@@ -26,16 +26,6 @@
       <span style="display:none" class="help-inline">Campo obrigatório</span>
     </div>
   </div>
-  
-  <div id="produto-box-qtd" class="control-group">
-    <label class="control-label" for="quantidade">Quantidade*</label>
-    <div class="controls">
-      <input type="text" id="quantidade" name="quantidade" placeholder="Quantidade" 
-             value="<c:if test="${!empty requestScope['product']}" ><jsp:getProperty name="product"
-                 property="qnt" /></c:if>">
-      <span style="display:none" class="help-inline">Campo obrigatório</span>
-    </div>
-  </div>
       
       <input id="product_id" name="product_id" type="hidden" 
              value="<c:if test="${empty requestScope['product']}" >0</c:if><c:if test="${!empty requestScope['product']}" ><jsp:getProperty name="product"

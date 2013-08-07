@@ -4,19 +4,23 @@
  */
 package controller;
 
+import dao.SaleDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.MessageBean;
+import model.UserBean;
 
 /**
  *
  * @author Pedro
  */
-public class StartServlet extends HttpServlet {
+public class SaleServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -33,14 +37,44 @@ public class StartServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
+            
+            SaleDAO sal = new SaleDAO();
             HttpSession s = request.getSession();
-            if(s.getAttribute("logged_user") != null) {
-                response.sendRedirect("/lojaDeEsportes/index.jsp");
+            
+            int productId = Integer.parseInt(request.getParameter("prod-name"));
+            double unitPrice = Double.parseDouble(request.getParameter("price"));
+            int qnt = Integer.parseInt(request.getParameter("quantidade"));
+            UserBean user = (UserBean)s.getAttribute("logged_user");
+            int userId = user.getId();
+            String message = sal.insertIntoSales(productId, userId, unitPrice, qnt);
+            String[] messages = message.split(";");
+            if(!message.equals("")) {
+                request.setAttribute("userMessage", new MessageBean(messages[0], messages[1]));
+
+                String address = "/ViewSalesServlet";
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+
+                dispatcher.forward(request, response);
             } else {
-                response.sendRedirect("/lojaDeEsportes/login.jsp");
+                request.setAttribute("userMessage", new MessageBean(messages[0], messages[1]));
+
+                String address = "/ViewSalesServlet";
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+
+                dispatcher.forward(request, response);
             }
-        } finally {            
+            
+        } catch(Exception e) {
+            request.setAttribute("userMessage", new MessageBean("erro", "Erro ao realizar venda."));
+
+            String address = "/ViewSalesServlet";
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+
+            dispatcher.forward(request, response);
+        }finally {            
             out.close();
         }
     }

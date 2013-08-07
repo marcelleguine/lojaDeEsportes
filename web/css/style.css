@@ -94,6 +94,28 @@ h1{
 }
 /*end login*/
 
+/*Referente à mensagens de usuário*/
+#user_messages {
+    padding: 10px 35px 10px 10px;
+    border: 1px solid;
+    border-radius: 4px;
+    display: block;
+}
+
+#user_messages.erro {
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+}
+
+#user_messages.sucesso {
+    color: #468847;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+/*Fim Mensagens de usuário*/
+
 /*vendas*/
 #form-sell input, #form-sell select{
     margin-right: 10px;

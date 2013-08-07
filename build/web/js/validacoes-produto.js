@@ -3,14 +3,12 @@
     $('#form-produto').on('submit', function() {
         return !!(
             validarNome() *
-            validarPreco() *
-            validarQtd()
+            validarPreco()
         );
     });
     
     $('#form-compra').on('submit', function() {
         return !!(
-            validarNome() *
             validarQtd()
         );
     });
@@ -37,19 +35,6 @@
         else {
             $('#produto-box-preco').removeClass("error");
             $('#produto-box-preco .help-inline').hide();
-            return true;
-        }
-    }
-    
-    function validarQtd() {
-        if (!$.isNumeric($('#quantidade').val())) {
-            $('#produto-box-qtd').addClass("error");
-            $('#produto-box-qtd .help-inline').show();
-            return false;
-        }
-        else {
-            $('#produto-box-preco').removeClass("error");
-            $('#produto-box-qtd .help-inline').hide();
             return true;
         }
     }

@@ -8,11 +8,13 @@ package controller;
 import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.MessageBean;
 
 /**
  *
@@ -52,19 +54,37 @@ public class UserServlet extends HttpServlet {
             //Verifica se é produto novo (id == 0) ou não:
             if(user_id == 0) {
                 if(u.insertIntoUser(login, password, name, cpf, salary, dataNascimento, email)) {
-                    response.sendRedirect("ViewUsersServlet");   
+                    request.setAttribute("userMessage", new MessageBean("sucesso", "Funcionário cadastrado com sucesso."));
+
+                    String address = "/ViewUsersServlet";
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+
+                    dispatcher.forward(request, response);
                 } else{
                     out.print("Houve um erro inesperado ao incluir este funcionário.");
                 }
             } else {
                 if(u.editUser(user_id,login, password ,name, cpf, salary, dataNascimento, email)) {
-                    response.sendRedirect("/lojaDeEsportes/ViewUsersServlet");
+                    request.setAttribute("userMessage", new MessageBean("sucesso", "Informações do funcionário alteradas com sucesso."));
+
+                    String address = "/ViewUsersServlet";
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+
+                    dispatcher.forward(request, response);
                 } else{
                     out.print("Houve um erro inesperado ao editar este funcionário.");
                 }
             }
         } catch(Exception e) {
-            out.print(e.toString());
+            request.setAttribute("userMessage", new MessageBean("erro", "Houve um erro ao cadastradar este funcionário."));
+
+            String address = "/ViewUsersServlet";
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+
+            dispatcher.forward(request, response);
         } finally {            
             out.close();
         }

@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
                 if(u.userLogin(user, login, password)) {
                     HttpSession s = request.getSession();
                     s.setAttribute("logged_user", user);
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("ViewSalesServlet");
                 } else {
                     response.sendRedirect("");
                 }
