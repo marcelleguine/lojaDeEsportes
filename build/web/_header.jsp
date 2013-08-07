@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+
+<c:if test="${!empty sessionScope['logged_user']}">
+
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
@@ -61,3 +64,10 @@
     </div>
 
     <div class="container-fluid">
+    </c:if>
+<c:if test="${empty sessionScope['logged_user']}">
+    <script type="text/javascript">
+        window.location="/lojaDeEsportes/login.jsp";
+     </script>
+</c:if>
+            

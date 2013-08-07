@@ -69,7 +69,7 @@
   <div id="usuario-box-data" class="control-group">
     <label class="control-label" for="data-nascimento">Data de nascimento</label>
     <div class="controls">
-        <input type="text" id="data-nascimento" name="data-nascimento" placeholder="__/__/__" 
+        <input type="date" id="data-nascimento" name="data-nascimento" placeholder="__/__/__" 
                value="<c:if test="${!empty requestScope['user']['date']}" ><jsp:getProperty name="user"
                  property="date" /></c:if>"> <!-- criar máscara -->
       <span style="display:none" class="help-inline">Data inválida</span>

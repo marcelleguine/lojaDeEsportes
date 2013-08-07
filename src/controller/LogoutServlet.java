@@ -39,7 +39,7 @@ public class LogoutServlet extends HttpServlet {
             
             s.removeAttribute("logged_user");
             
-            response.sendRedirect("");
+            response.sendRedirect("/lojaDeEsportes/login.jsp");
             
         } finally {            
             out.close();

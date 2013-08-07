@@ -7,8 +7,8 @@
     <meta name="description" content="Loja de esportes">
     <meta name="author" content="Lucas Nadalutti, Marcelle Guine, Pedro Yusim">
 
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="img/favicon.png">
   </head>
 
@@ -24,7 +24,7 @@
         <button class="btn btn-success" type="submit">Login</button>
       </form>
     </div> <!-- end container -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
   </body>
 </html>
